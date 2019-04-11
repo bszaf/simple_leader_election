@@ -1,0 +1,15 @@
+defmodule Leader.Supervisor do
+  use DynamicSupervisor
+
+  def start_link(arg) do
+    DynamicSupervisor.start_link(__MODULE__, arg, name: __MODULE__)
+  end
+
+  @impl true
+  def init(_) do
+    DynamicSupervisor.init(
+      strategy: :one_for_one,
+      extra_arguments: []
+    )
+  end
+end
